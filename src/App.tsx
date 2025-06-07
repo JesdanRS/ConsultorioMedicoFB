@@ -22,8 +22,12 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center space-x-3">
-              <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 p-3 rounded-2xl shadow-lg">
-                <Brain className="h-8 w-8 text-white" />
+              <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-2xl shadow-lg">
+                <img
+                  src="original_logo_transparent 2[1].png" // Reemplaza con la ruta correcta
+                  alt="Logo"
+                  className="h-16 w-16 rounded-2xl object-cover transition-transform hover:scale-110 duration-300"
+                />{" "}
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-slate-800">
@@ -258,10 +262,10 @@ function App() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Neurocirugías Generales */}
             <div className="bg-white p-8 rounded-2xl shadow-xl border border-slate-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 p-4 rounded-2xl w-fit mb-6">
+              <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 p-4 rounded-2xl w-fit mb-6" >
                 <Brain className="w-8 h-8 text-white" />
               </div>
-              <h4 className="text-xl font-bold text-slate-800 mb-4">
+              <h4 className="text-xl font-bold text-slate-800 mb-4 ">
                 Neurocirugías Generales
               </h4>
               <p className="text-slate-600 mb-4">
