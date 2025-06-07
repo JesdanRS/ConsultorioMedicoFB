@@ -1,22 +1,19 @@
-import React from 'react';
-import { 
-  Brain, 
-  Stethoscope, 
-  Award, 
-  MapPin, 
-  Phone, 
-  Mail, 
+import {
+  Brain,
+  Stethoscope,
+  Award,
+  MapPin,
+  Phone,
+  Mail,
   Calendar,
   Activity,
   Scan,
   Microscope,
   Zap,
   Camera,
-  Users,
   Clock,
-  Shield,
-  CheckCircle2
-} from 'lucide-react';
+  CheckCircle2,
+} from "lucide-react";
 
 function App() {
   return (
@@ -30,15 +27,39 @@ function App() {
                 <Brain className="h-8 w-8 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-slate-800">Dr. [Tu Nombre]</h1>
-                <p className="text-sm text-emerald-600 font-medium">Neurocirujano Especialista</p>
+                <h1 className="text-2xl font-bold text-slate-800">
+                  Dr. Fabian Said Aranibar Bernal
+                </h1>
+                <p className="text-sm text-emerald-600 font-medium">
+                  Neurocirujano Especialista
+                </p>
               </div>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <a href="#inicio" className="text-slate-700 hover:text-emerald-600 font-medium transition-colors duration-200">Inicio</a>
-              <a href="#curriculum" className="text-slate-700 hover:text-emerald-600 font-medium transition-colors duration-200">Curriculum</a>
-              <a href="#servicios" className="text-slate-700 hover:text-emerald-600 font-medium transition-colors duration-200">Servicios</a>
-              <a href="#contacto" className="text-slate-700 hover:text-emerald-600 font-medium transition-colors duration-200">Contacto</a>
+              <a
+                href="#inicio"
+                className="text-slate-700 hover:text-emerald-600 font-medium transition-colors duration-200"
+              >
+                Inicio
+              </a>
+              <a
+                href="#curriculum"
+                className="text-slate-700 hover:text-emerald-600 font-medium transition-colors duration-200"
+              >
+                Curriculum
+              </a>
+              <a
+                href="#servicios"
+                className="text-slate-700 hover:text-emerald-600 font-medium transition-colors duration-200"
+              >
+                Servicios
+              </a>
+              <a
+                href="#contacto"
+                className="text-slate-700 hover:text-emerald-600 font-medium transition-colors duration-200"
+              >
+                Contacto
+              </a>
             </nav>
           </div>
         </div>
@@ -57,27 +78,39 @@ function App() {
                   </div>
                   <h2 className="text-4xl lg:text-5xl font-bold text-slate-800 mb-6 leading-tight">
                     Bienvenido a mi
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-cyan-600"> Consultorio Virtual</span>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-cyan-600">
+                      {" "}
+                      Consultorio Virtual
+                    </span>
                   </h2>
                 </div>
 
                 <div className="prose prose-lg text-slate-600 mb-8">
                   <p className="mb-4">
-                    Con más de una década de experiencia en neurocirugía, ofrezco atención médica especializada 
-                    combinando la más alta formación académica internacional con tecnología de vanguardia.
+                    Con más de una década de experiencia en neurocirugía,
+                    ofrezco atención médica especializada combinando la más alta
+                    formación académica internacional con tecnología de
+                    vanguardia.
                   </p>
                   <p className="mb-4">
-                    Mi compromiso es brindar el mejor cuidado neurológico a cada paciente, respaldado por 
-                    mi formación en prestigiosas instituciones de Bolivia, Italia y España.
+                    Mi compromiso es brindar el mejor cuidado neurológico a cada
+                    paciente, respaldado por mi formación en prestigiosas
+                    instituciones de Bolivia, Italia y España.
                   </p>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <button className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-emerald-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center">
+                  <button
+                    onClick={() => (window.location.href = "#contacto")}
+                    className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-emerald-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center"
+                  >
                     <Calendar className="w-5 h-5 mr-2" />
                     Agendar Consulta
                   </button>
-                  <button className="border-2 border-emerald-500 text-emerald-600 px-8 py-4 rounded-xl font-semibold hover:bg-emerald-50 transition-all duration-300 flex items-center justify-center">
+                  <button
+                    onClick={() => (window.location.href = "tel:+59176517453")}
+                    className="border-2 border-emerald-500 text-emerald-600 px-8 py-4 rounded-xl font-semibold hover:bg-emerald-50 transition-all duration-300 flex items-center justify-center"
+                  >
                     <Phone className="w-5 h-5 mr-2" />
                     Contactar Ahora
                   </button>
@@ -90,13 +123,21 @@ function App() {
                     <div className="w-full h-80 bg-gradient-to-br from-slate-200 to-slate-300 rounded-xl flex items-center justify-center border-2 border-dashed border-slate-400">
                       <div className="text-center">
                         <Camera className="w-12 h-12 text-slate-500 mx-auto mb-3" />
-                        <p className="text-slate-600 font-medium">Espacio para tu foto profesional</p>
-                        <p className="text-sm text-slate-500 mt-2">Dimensiones recomendadas: 400x480px</p>
+                        <p className="text-slate-600 font-medium">
+                          Espacio para tu foto profesional
+                        </p>
+                        <p className="text-sm text-slate-500 mt-2">
+                          Dimensiones recomendadas: 400x480px
+                        </p>
                       </div>
                     </div>
                     <div className="mt-4 text-center">
-                      <p className="text-slate-800 font-semibold">Dr. [Tu Nombre Completo]</p>
-                      <p className="text-emerald-600 text-sm">Especialista en Neurocirugía</p>
+                      <p className="text-slate-800 font-semibold">
+                        Dr. Fabian Bernal
+                      </p>
+                      <p className="text-emerald-600 text-sm">
+                        Especialista en Neurocirugía
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -110,9 +151,12 @@ function App() {
       <section id="curriculum" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h3 className="text-4xl font-bold text-slate-800 mb-4">Formación Académica</h3>
+            <h3 className="text-4xl font-bold text-slate-800 mb-4">
+              Formación Académica
+            </h3>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Una trayectoria académica internacional que respalda la excelencia en atención neurológica
+              Una trayectoria académica internacional que respalda la excelencia
+              en atención neurológica
             </p>
           </div>
 
@@ -122,11 +166,15 @@ function App() {
               <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 p-4 rounded-2xl w-fit mb-6">
                 <Award className="w-8 h-8 text-white" />
               </div>
-              <h4 className="text-2xl font-bold text-slate-800 mb-4">Medicina Cirujano</h4>
+              <h4 className="text-2xl font-bold text-slate-800 mb-4">
+                Medicina Cirujano
+              </h4>
               <div className="space-y-3">
                 <div className="flex items-center">
                   <MapPin className="w-5 h-5 text-emerald-600 mr-3" />
-                  <span className="text-slate-700">Universidad Franz Tamayo (UNIFRANZ)</span>
+                  <span className="text-slate-700">
+                    Universidad Franz Tamayo (UNIFRANZ)
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <MapPin className="w-5 h-5 text-emerald-600 mr-3" />
@@ -134,7 +182,8 @@ function App() {
                 </div>
               </div>
               <p className="text-slate-600 mt-4">
-                Formación médica integral con sólidos fundamentos en ciencias básicas y clínicas.
+                Formación médica integral con sólidos fundamentos en ciencias
+                básicas y clínicas.
               </p>
             </div>
 
@@ -143,15 +192,26 @@ function App() {
               <div className="bg-gradient-to-r from-cyan-500 to-cyan-600 p-4 rounded-2xl w-fit mb-6">
                 <Brain className="w-8 h-8 text-white" />
               </div>
-              <h4 className="text-2xl font-bold text-slate-800 mb-4">Postgrado</h4>
+              <h4 className="text-2xl font-bold text-slate-800 mb-4">
+                Postgrado Cirujia
+              </h4>
               <div className="space-y-3">
                 <div className="flex items-center">
                   <MapPin className="w-5 h-5 text-cyan-600 mr-3" />
-                  <span className="text-slate-700">Italia</span>
+                  <span className="text-slate-700">
+                    Universidad La Sapienza de Roma
+                  </span>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex items-center">
+                    <MapPin className="w-5 h-5 text-cyan-600 mr-3" />
+                    <span className="text-slate-700">Italia</span>
+                  </div>
                 </div>
               </div>
               <p className="text-slate-600 mt-4">
-                Especialización avanzada en técnicas europeas de neurología y neurocirugía.
+                Especialización avanzada en técnicas europeas de neurología y
+                neurocirugía.
               </p>
             </div>
 
@@ -160,15 +220,24 @@ function App() {
               <div className="bg-gradient-to-r from-emerald-600 to-cyan-600 p-4 rounded-2xl w-fit mb-6">
                 <Zap className="w-8 h-8 text-white" />
               </div>
-              <h4 className="text-2xl font-bold text-slate-800 mb-4">Especialidad en Neurocirugía</h4>
+              <h4 className="text-2xl font-bold text-slate-800 mb-4">
+                Especialidad en Neurocirugía
+              </h4>
               <div className="space-y-3">
+                <div className="flex items-center">
+                  <MapPin className="w-5 h-5 text-emerald-600 mr-3" />
+                  <span className="text-slate-700">
+                    Universitat de Barcelona
+                  </span>
+                </div>
                 <div className="flex items-center">
                   <MapPin className="w-5 h-5 text-emerald-600 mr-3" />
                   <span className="text-slate-700">España</span>
                 </div>
               </div>
               <p className="text-slate-600 mt-4">
-                Especialización de élite en neurocirugía con técnicas mínimamente invasivas.
+                Especialización de élite en neurocirugía con técnicas
+                mínimamente invasivas.
               </p>
             </div>
           </div>
@@ -176,12 +245,18 @@ function App() {
       </section>
 
       {/* Services Section */}
-      <section id="servicios" className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
+      <section
+        id="servicios"
+        className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h3 className="text-4xl font-bold text-slate-800 mb-4">Servicios Clínicos</h3>
+            <h3 className="text-4xl font-bold text-slate-800 mb-4">
+              Servicios Clínicos
+            </h3>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Servicios integrales de neurocirugía con tecnología de vanguardia y atención personalizada
+              Servicios integrales de neurocirugía con tecnología de vanguardia
+              y atención personalizada
             </p>
           </div>
 
@@ -191,9 +266,12 @@ function App() {
               <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 p-4 rounded-2xl w-fit mb-6">
                 <Brain className="w-8 h-8 text-white" />
               </div>
-              <h4 className="text-xl font-bold text-slate-800 mb-4">Neurocirugías Generales</h4>
+              <h4 className="text-xl font-bold text-slate-800 mb-4">
+                Neurocirugías Generales
+              </h4>
               <p className="text-slate-600 mb-4">
-                Procedimientos neuroquirúrgicos especializados con técnicas mínimamente invasivas y alta precisión.
+                Procedimientos neuroquirúrgicos especializados con técnicas
+                mínimamente invasivas y alta precisión.
               </p>
               <div className="flex items-center text-emerald-600">
                 <CheckCircle2 className="w-5 h-5 mr-2" />
@@ -206,13 +284,18 @@ function App() {
               <div className="bg-gradient-to-r from-cyan-500 to-cyan-600 p-4 rounded-2xl w-fit mb-6">
                 <Activity className="w-8 h-8 text-white" />
               </div>
-              <h4 className="text-xl font-bold text-slate-800 mb-4">Quirófano Especializado</h4>
+              <h4 className="text-xl font-bold text-slate-800 mb-4">
+                Quirófano Especializado
+              </h4>
               <p className="text-slate-600 mb-4">
-                Quirófano equipado con tecnología de última generación para procedimientos neuroquirúrgicos complejos.
+                Quirófano equipado con tecnología de última generación para
+                procedimientos neuroquirúrgicos complejos.
               </p>
               <div className="flex items-center text-emerald-600">
                 <CheckCircle2 className="w-5 h-5 mr-2" />
-                <span className="text-sm font-medium">Equipamiento Avanzado</span>
+                <span className="text-sm font-medium">
+                  Equipamiento Avanzado
+                </span>
               </div>
             </div>
 
@@ -221,9 +304,12 @@ function App() {
               <div className="bg-gradient-to-r from-emerald-600 to-cyan-600 p-4 rounded-2xl w-fit mb-6">
                 <Scan className="w-8 h-8 text-white" />
               </div>
-              <h4 className="text-xl font-bold text-slate-800 mb-4">Tomografía</h4>
+              <h4 className="text-xl font-bold text-slate-800 mb-4">
+                Tomografía
+              </h4>
               <p className="text-slate-600 mb-4">
-                Estudios tomográficos de alta resolución para diagnóstico preciso de patologías neurológicas.
+                Estudios tomográficos de alta resolución para diagnóstico
+                preciso de patologías neurológicas.
               </p>
               <div className="flex items-center text-emerald-600">
                 <CheckCircle2 className="w-5 h-5 mr-2" />
@@ -236,9 +322,12 @@ function App() {
               <div className="bg-gradient-to-r from-cyan-500 to-emerald-500 p-4 rounded-2xl w-fit mb-6">
                 <Zap className="w-8 h-8 text-white" />
               </div>
-              <h4 className="text-xl font-bold text-slate-800 mb-4">Resonancia Magnética</h4>
+              <h4 className="text-xl font-bold text-slate-800 mb-4">
+                Resonancia Magnética
+              </h4>
               <p className="text-slate-600 mb-4">
-                Estudios de resonancia magnética con contraste para evaluación detallada del sistema nervioso.
+                Estudios de resonancia magnética con contraste para evaluación
+                detallada del sistema nervioso.
               </p>
               <div className="flex items-center text-emerald-600">
                 <CheckCircle2 className="w-5 h-5 mr-2" />
@@ -253,7 +342,8 @@ function App() {
               </div>
               <h4 className="text-xl font-bold text-slate-800 mb-4">Rayos X</h4>
               <p className="text-slate-600 mb-4">
-                Radiografías especializadas para evaluación ósea y apoyo en diagnósticos neurológicos.
+                Radiografías especializadas para evaluación ósea y apoyo en
+                diagnósticos neurológicos.
               </p>
               <div className="flex items-center text-emerald-600">
                 <CheckCircle2 className="w-5 h-5 mr-2" />
@@ -266,9 +356,12 @@ function App() {
               <div className="bg-gradient-to-r from-cyan-600 to-emerald-600 p-4 rounded-2xl w-fit mb-6">
                 <Microscope className="w-8 h-8 text-white" />
               </div>
-              <h4 className="text-xl font-bold text-slate-800 mb-4">Laboratorio Clínico</h4>
+              <h4 className="text-xl font-bold text-slate-800 mb-4">
+                Laboratorio Clínico
+              </h4>
               <p className="text-slate-600 mb-4">
-                Análisis clínicos especializados para apoyo diagnóstico y seguimiento neurológico.
+                Análisis clínicos especializados para apoyo diagnóstico y
+                seguimiento neurológico.
               </p>
               <div className="flex items-center text-emerald-600">
                 <CheckCircle2 className="w-5 h-5 mr-2" />
@@ -285,7 +378,8 @@ function App() {
           <div className="text-center mb-16">
             <h3 className="text-4xl font-bold text-slate-800 mb-4">Contacto</h3>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Agenda tu consulta virtual o presencial. Estamos aquí para cuidar de tu salud neurológica
+              Agenda tu consulta virtual o presencial. Estamos aquí para cuidar
+              de tu salud neurológica
             </p>
           </div>
 
@@ -296,9 +390,13 @@ function App() {
                   <Phone className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-slate-800 mb-2">Teléfono</h4>
-                  <p className="text-slate-600">[Tu número de teléfono]</p>
-                  <p className="text-sm text-slate-500">Disponible de Lunes a Viernes 8:00 - 18:00</p>
+                  <h4 className="text-lg font-semibold text-slate-800 mb-2">
+                    Teléfono
+                  </h4>
+                  <p className="text-slate-600">+591 76517453</p>
+                  <p className="text-sm text-slate-500">
+                    Disponible de Lunes a Viernes 8:00 - 18:00
+                  </p>
                 </div>
               </div>
 
@@ -307,9 +405,13 @@ function App() {
                   <Mail className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-slate-800 mb-2">Email</h4>
-                  <p className="text-slate-600">[tu.email@consultorio.com]</p>
-                  <p className="text-sm text-slate-500">Respuesta en 24 horas</p>
+                  <h4 className="text-lg font-semibold text-slate-800 mb-2">
+                    Email
+                  </h4>
+                  <p className="text-slate-600">fabian.bernal@gmail.com</p>
+                  <p className="text-sm text-slate-500">
+                    Respuesta en 24 horas
+                  </p>
                 </div>
               </div>
 
@@ -318,10 +420,12 @@ function App() {
                   <Clock className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-slate-800 mb-2">Horarios de Atención</h4>
+                  <h4 className="text-lg font-semibold text-slate-800 mb-2">
+                    Horarios de Atención
+                  </h4>
                   <div className="space-y-1 text-slate-600">
-                    <p>Lunes - Viernes: 8:00 - 18:00</p>
-                    <p>Sábados: 9:00 - 14:00</p>
+                    <p>Lunes - Jueves: 9:00 - 15:00</p>
+                    <p>Sábados: 10:00 - 14:00</p>
                     <p>Emergencias: 24/7</p>
                   </div>
                 </div>
@@ -329,25 +433,58 @@ function App() {
             </div>
 
             <div className="bg-gradient-to-br from-slate-50 to-cyan-50 p-8 rounded-2xl">
-              <h4 className="text-2xl font-bold text-slate-800 mb-6">Solicitar Consulta</h4>
+              <h4 className="text-2xl font-bold text-slate-800 mb-6">
+                Solicitar Consulta
+              </h4>
               <form className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Nombre Completo</label>
-                  <input type="text" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors duration-200" />
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Nombre Completo
+                  </label>
+                  <input
+                    title="Ingrese su nombre completo"
+                    placeholder="Ej: Jorge Choque"
+                    type="text"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors duration-200"
+                  />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Email</label>
-                  <input type="email" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors duration-200" />
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Email
+                  </label>
+                  <input
+                    title="Ingrese su email"
+                    placeholder="Ej: Jordan7Fer@gmail.com"
+                    type="email"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors duration-200"
+                  />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Teléfono</label>
-                  <input type="tel" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors duration-200" />
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Teléfono
+                  </label>
+                  <input
+                    title="Ingrese su telefono"
+                    placeholder="Ej: +591 67179820"
+                    type="tel"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors duration-200"
+                  />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Mensaje</label>
-                  <textarea rows={4} className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors duration-200"></textarea>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Mensaje
+                  </label>
+                  <textarea
+                    title="Ingrese su mensaje"
+                    placeholder="Escribe tu mensaje aquí..."
+                    rows={4}
+                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors duration-200"
+                  ></textarea>
                 </div>
-                <button type="submit" className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-emerald-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                <button
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-emerald-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                >
                   Enviar Solicitud
                 </button>
               </form>
@@ -367,11 +504,14 @@ function App() {
                 </div>
                 <div>
                   <h4 className="text-lg font-bold">Dr. [Tu Nombre]</h4>
-                  <p className="text-sm text-slate-400">Neurocirujano Especialista</p>
+                  <p className="text-sm text-slate-400">
+                    Neurocirujano Especialista
+                  </p>
                 </div>
               </div>
               <p className="text-slate-400">
-                Atención neurológica especializada con formación internacional y tecnología de vanguardia.
+                Atención neurológica especializada con formación internacional y
+                tecnología de vanguardia.
               </p>
             </div>
 
@@ -397,7 +537,10 @@ function App() {
           </div>
 
           <div className="border-t border-slate-700 mt-8 pt-8 text-center text-slate-400">
-            <p>&copy; 2024 Dr. [Tu Nombre] - Consultorio Virtual de Neurocirugía. Todos los derechos reservados.</p>
+            <p>
+              &copy; 2025 Dr. Fabian Bernal - Consultorio Virtual de
+              Neurocirugía. Todos los derechos reservados Jesdan.
+            </p>
           </div>
         </div>
       </footer>
