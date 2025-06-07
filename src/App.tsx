@@ -10,7 +10,6 @@ import {
   Scan,
   Microscope,
   Zap,
-  Camera,
   Clock,
   CheckCircle2,
 } from "lucide-react";
@@ -117,19 +116,15 @@ function App() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-emerald-50 to-cyan-50 p-12 lg:p-16 flex items-center justify-center">
+              <div className="bg-gradient-to-br from-emerald-50 to-cyan-50 p-12 lg:p-16 flex items-center justify-center ">
                 <div className="w-full max-w-md">
-                  <div className="bg-white p-8 rounded-2xl shadow-xl border-4 border-emerald-100">
-                    <div className="w-full h-80 bg-gradient-to-br from-slate-200 to-slate-300 rounded-xl flex items-center justify-center border-2 border-dashed border-slate-400">
-                      <div className="text-center">
-                        <Camera className="w-12 h-12 text-slate-500 mx-auto mb-3" />
-                        <p className="text-slate-600 font-medium">
-                          Espacio para tu foto profesional
-                        </p>
-                        <p className="text-sm text-slate-500 mt-2">
-                          Dimensiones recomendadas: 400x480px
-                        </p>
-                      </div>
+                  <div className="bg-white p-8 rounded-2xl shadow-xl border-4 border-emerald-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                    <div className="w-full h-80 rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                      <img
+                        src="/image.png"
+                        alt="Dr. Fabian Bernal - Neurocirujano Especialista"
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div className="mt-4 text-center">
                       <p className="text-slate-800 font-semibold">
@@ -503,7 +498,7 @@ function App() {
                   <Brain className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-bold">Dr. [Tu Nombre]</h4>
+                  <h4 className="text-lg font-bold">Dr. Fabian Bernal</h4>
                   <p className="text-sm text-slate-400">
                     Neurocirujano Especialista
                   </p>
