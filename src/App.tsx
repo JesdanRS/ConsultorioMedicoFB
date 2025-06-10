@@ -13,6 +13,7 @@ import {
   Clock,
   CheckCircle2,
 } from "lucide-react";
+import { AppointmentScheduler } from "./components/AppointmentScheduler";
 
 function App() {
   return (
@@ -56,6 +57,12 @@ function App() {
                 className="text-slate-700 hover:text-emerald-600 font-medium transition-colors duration-200"
               >
                 Servicios
+              </a>
+              <a
+                href="#agendar"
+                className="text-slate-700 hover:text-emerald-600 font-medium transition-colors duration-200"
+              >
+                Agendar Cita
               </a>
               <a
                 href="#contacto"
@@ -104,7 +111,7 @@ function App() {
 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button
-                    onClick={() => (window.location.href = "#contacto")}
+                    onClick={() => (window.location.href = "#agendar")}
                     className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-emerald-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center"
                   >
                     <Calendar className="w-5 h-5 mr-2" />
@@ -371,13 +378,31 @@ function App() {
         </div>
       </section>
 
+      {/* Appointment Scheduling Section */}
+      <section id="agendar" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h3 className="text-4xl font-bold text-slate-800 mb-4">
+              Agendar Consulta
+            </h3>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Programa tu cita de manera fácil y rápida. Selecciona la fecha, hora y tipo de consulta que mejor se adapte a tus necesidades.
+            </p>
+          </div>
+
+          <div className="max-w-5xl mx-auto">
+            <AppointmentScheduler />
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
-      <section id="contacto" className="py-20 bg-white">
+      <section id="contacto" className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h3 className="text-4xl font-bold text-slate-800 mb-4">Contacto</h3>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Agenda tu consulta virtual o presencial. Estamos aquí para cuidar
+              ¿Tienes preguntas? Contáctanos directamente. Estamos aquí para cuidar
               de tu salud neurológica
             </p>
           </div>
@@ -431,9 +456,9 @@ function App() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-slate-50 to-cyan-50 p-8 rounded-2xl">
+            <div className="bg-white p-8 rounded-2xl shadow-xl border border-slate-200">
               <h4 className="text-2xl font-bold text-slate-800 mb-6">
-                Solicitar Consulta
+                Contacto Directo
               </h4>
               <form className="space-y-6">
                 <div>
@@ -484,7 +509,7 @@ function App() {
                   type="submit"
                   className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-emerald-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 >
-                  Enviar Solicitud
+                  Enviar Mensaje
                 </button>
               </form>
             </div>
