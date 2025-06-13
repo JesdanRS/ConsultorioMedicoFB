@@ -14,6 +14,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { AppointmentScheduler } from "./components/AppointmentScheduler";
+import { ProfessionalCalendar } from "./components/ProfessionalCalendar";
 
 function App() {
   return (
@@ -63,6 +64,12 @@ function App() {
                 className="text-slate-700 hover:text-emerald-600 font-medium transition-colors duration-200"
               >
                 Agendar Cita
+              </a>
+              <a
+                href="#calendario"
+                className="text-slate-700 hover:text-emerald-600 font-medium transition-colors duration-200"
+              >
+                Calendario
               </a>
               <a
                 href="#contacto"
@@ -396,8 +403,25 @@ function App() {
         </div>
       </section>
 
+      {/* Professional Calendar Section */}
+      <section id="calendario" className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h3 className="text-4xl font-bold text-slate-800 mb-4">
+              Calendario de Reservas
+            </h3>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Visualiza y gestiona tus citas médicas de forma profesional. 
+              Selecciona fechas disponibles y reserva tu horario preferido.
+            </p>
+          </div>
+
+          <ProfessionalCalendar />
+        </div>
+      </section>
+
       {/* Contact Section */}
-      <section id="contacto" className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
+      <section id="contacto" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h3 className="text-4xl font-bold text-slate-800 mb-4">Contacto</h3>
