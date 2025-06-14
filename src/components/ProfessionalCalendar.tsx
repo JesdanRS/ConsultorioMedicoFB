@@ -14,9 +14,6 @@ import {
   X,
   AlertCircle,
   Star,
-  AlertTriangle,
-  Trash2,
-  ArrowLeft,
 } from "lucide-react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
@@ -41,11 +38,6 @@ export function ProfessionalCalendar() {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [isWeekend, setIsWeekend] = useState(false);
   const [lastReservation, setLastReservation] = useState<ReservedAppointment | null>(null);
-  
-  // New states for duplicate detection
-  const [showDuplicateWarning, setShowDuplicateWarning] = useState(false);
-  const [existingReservation, setExistingReservation] = useState<ReservedAppointment | null>(null);
-  const [showManageReservations, setShowManageReservations] = useState(false);
 
   const handleDateSelect = (date: Date | undefined) => {
     if (!date) return;
@@ -57,18 +49,6 @@ export function ProfessionalCalendar() {
     if (dayOfWeek === 0 || dayOfWeek === 6) {
       setIsWeekend(true);
       setIsModalOpen(true);
-      return;
-    }
-
-    // Check for existing reservation on this date
-    const dateString = format(date, "yyyy-MM-dd");
-    const existingReservationForDate = reservedAppointments.find(
-      appointment => appointment.date === dateString
-    );
-
-    if (existingReservationForDate) {
-      setExistingReservation(existingReservationForDate);
-      setShowDuplicateWarning(true);
     } else {
       setIsWeekend(false);
       setIsModalOpen(true);
@@ -102,32 +82,6 @@ export function ProfessionalCalendar() {
     }
   };
 
-  const handleCancelExistingReservation = (reservationId: string) => {
-    setReservedAppointments(prev => 
-      prev.filter(appointment => appointment.id !== reservationId)
-    );
-    setShowDuplicateWarning(false);
-    setShowManageReservations(false);
-    setExistingReservation(null);
-    
-    // After canceling, open the time selection modal
-    if (selectedDate) {
-      setIsWeekend(false);
-      setIsModalOpen(true);
-    }
-  };
-
-  const handleProceedWithNewDate = () => {
-    setShowDuplicateWarning(false);
-    setExistingReservation(null);
-    setSelectedDate(undefined);
-  };
-
-  const handleViewReservations = () => {
-    setShowDuplicateWarning(false);
-    setShowManageReservations(true);
-  };
-
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedTime("");
@@ -137,16 +91,6 @@ export function ProfessionalCalendar() {
   const closeSuccessModal = () => {
     setShowSuccessMessage(false);
     setLastReservation(null);
-  };
-
-  const closeDuplicateWarning = () => {
-    setShowDuplicateWarning(false);
-    setExistingReservation(null);
-    setSelectedDate(undefined);
-  };
-
-  const closeManageReservations = () => {
-    setShowManageReservations(false);
   };
 
   const isTimeReserved = (date: Date, time: string) => {
@@ -170,135 +114,6 @@ export function ProfessionalCalendar() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      {/* Duplicate Reservation Warning Modal */}
-      <Dialog open={showDuplicateWarning} onOpenChange={setShowDuplicateWarning}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="flex items-center space-x-2 text-amber-600">
-              <AlertTriangle className="w-5 h-5" />
-              <span>Reserva Existente Detectada</span>
-            </DialogTitle>
-          </DialogHeader>
-
-          <div className="py-4 space-y-4">
-            <div className="bg-amber-50 p-4 rounded-xl border border-amber-200">
-              <div className="flex items-start space-x-3">
-                <AlertTriangle className="w-5 h-5 text-amber-500 mt-0.5" />
-                <div>
-                  <h3 className="font-semibold text-amber-800 mb-2">
-                    Ya tiene una reserva existente para esta fecha
-                  </h3>
-                  <p className="text-amber-700 text-sm mb-3">
-                    Por favor, seleccione una fecha diferente o cancele su reserva anterior.
-                  </p>
-                  
-                  {existingReservation && selectedDate && (
-                    <div className="bg-white p-3 rounded-lg border border-amber-300">
-                      <p className="text-sm text-slate-600 mb-1">Reserva existente:</p>
-                      <p className="font-medium text-slate-800">
-                        {format(new Date(existingReservation.date), "PPPP", { locale: es })}
-                      </p>
-                      <p className="text-amber-600 font-bold text-lg">
-                        {existingReservation.time}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Button 
-                onClick={handleProceedWithNewDate}
-                className="w-full bg-emerald-500 hover:bg-emerald-600"
-              >
-                <CalendarIcon className="w-4 h-4 mr-2" />
-                Seleccionar Fecha Diferente
-              </Button>
-              
-              <Button 
-                onClick={handleViewReservations}
-                variant="outline"
-                className="w-full border-amber-300 text-amber-700 hover:bg-amber-50"
-              >
-                <Trash2 className="w-4 h-4 mr-2" />
-                Ver y Gestionar Mis Reservas
-              </Button>
-              
-              <Button 
-                onClick={closeDuplicateWarning}
-                variant="outline"
-                className="w-full"
-              >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Volver al Calendario
-              </Button>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
-
-      {/* Manage Reservations Modal */}
-      <Dialog open={showManageReservations} onOpenChange={setShowManageReservations}>
-        <DialogContent className="sm:max-w-lg">
-          <DialogHeader>
-            <DialogTitle className="flex items-center space-x-2">
-              <CalendarIcon className="w-5 h-5 text-emerald-500" />
-              <span>Gestionar Mis Reservas</span>
-            </DialogTitle>
-          </DialogHeader>
-
-          <div className="py-4 space-y-4">
-            {reservedAppointments.length === 0 ? (
-              <div className="text-center py-8">
-                <CalendarIcon className="w-12 h-12 text-slate-400 mx-auto mb-3" />
-                <p className="text-slate-600">No tienes reservas activas</p>
-              </div>
-            ) : (
-              <div className="space-y-3 max-h-64 overflow-y-auto">
-                {reservedAppointments
-                  .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-                  .map((appointment) => (
-                  <div key={appointment.id} className="bg-gradient-to-r from-emerald-50 to-cyan-50 p-4 rounded-xl border border-emerald-200">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
-                        <div className="bg-emerald-500 p-2 rounded-lg">
-                          <Clock className="w-4 h-4 text-white" />
-                        </div>
-                        <div>
-                          <p className="font-semibold text-slate-800 text-sm">
-                            {format(new Date(appointment.date), "PPPP", { locale: es })}
-                          </p>
-                          <p className="text-emerald-600 font-bold text-lg">{appointment.time}</p>
-                        </div>
-                      </div>
-                      <Button
-                        onClick={() => handleCancelExistingReservation(appointment.id)}
-                        size="sm"
-                        variant="outline"
-                        className="border-red-300 text-red-600 hover:bg-red-50"
-                      >
-                        <Trash2 className="w-4 h-4 mr-1" />
-                        Cancelar
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            <Button 
-              onClick={closeManageReservations}
-              variant="outline"
-              className="w-full"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Volver al Calendario
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
-
       {/* Success Modal - Reduced Size */}
       <Dialog open={showSuccessMessage} onOpenChange={setShowSuccessMessage}>
         <DialogContent className="sm:max-w-lg">
@@ -420,20 +235,7 @@ export function ProfessionalCalendar() {
 
             {/* Reserved Appointments */}
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <h4 className="text-xl font-bold text-slate-800">Citas Reservadas</h4>
-                {reservedAppointments.length > 0 && (
-                  <Button
-                    onClick={() => setShowManageReservations(true)}
-                    size="sm"
-                    variant="outline"
-                    className="text-emerald-600 border-emerald-300 hover:bg-emerald-50"
-                  >
-                    <Trash2 className="w-4 h-4 mr-1" />
-                    Gestionar
-                  </Button>
-                )}
-              </div>
+              <h4 className="text-xl font-bold text-slate-800">Citas Reservadas</h4>
               
               {reservedAppointments.length === 0 ? (
                 <div className="bg-slate-50 p-6 rounded-xl text-center">
