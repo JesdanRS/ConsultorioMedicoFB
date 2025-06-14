@@ -114,38 +114,38 @@ export function ProfessionalCalendar() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      {/* Large Success Modal */}
+      {/* Success Modal - Reduced Size */}
       <Dialog open={showSuccessMessage} onOpenChange={setShowSuccessMessage}>
-        <DialogContent className="sm:max-w-2xl">
+        <DialogContent className="sm:max-w-lg">
           <DialogHeader>
-            <DialogTitle className="flex items-center justify-center space-x-3 text-2xl">
-              <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 p-3 rounded-full">
-                <CheckCircle2 className="w-8 h-8 text-white" />
+            <DialogTitle className="flex items-center justify-center space-x-2 text-xl">
+              <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 p-2 rounded-full">
+                <CheckCircle2 className="w-6 h-6 text-white" />
               </div>
-              <span className="text-emerald-600">¡Cita Reservada Exitosamente!</span>
+              <span className="text-emerald-600">¡Cita Reservada!</span>
             </DialogTitle>
           </DialogHeader>
 
-          <div className="py-8 text-center space-y-6">
-            <div className="bg-gradient-to-br from-emerald-50 to-cyan-50 p-8 rounded-2xl border-2 border-emerald-200">
-              <div className="flex items-center justify-center mb-4">
-                <Star className="w-6 h-6 text-emerald-500 mr-2" />
-                <h3 className="text-xl font-bold text-slate-800">Detalles de tu Reserva</h3>
-                <Star className="w-6 h-6 text-emerald-500 ml-2" />
+          <div className="py-4 text-center space-y-4">
+            <div className="bg-gradient-to-br from-emerald-50 to-cyan-50 p-6 rounded-xl border border-emerald-200">
+              <div className="flex items-center justify-center mb-3">
+                <Star className="w-5 h-5 text-emerald-500 mr-2" />
+                <h3 className="text-lg font-bold text-slate-800">Detalles de tu Reserva</h3>
+                <Star className="w-5 h-5 text-emerald-500 ml-2" />
               </div>
               
               {lastReservation && (
-                <div className="space-y-4">
-                  <div className="bg-white p-4 rounded-xl shadow-sm">
-                    <p className="text-slate-600 text-sm mb-1">Fecha de la Consulta:</p>
-                    <p className="text-xl font-bold text-slate-800">
+                <div className="space-y-3">
+                  <div className="bg-white p-3 rounded-lg shadow-sm">
+                    <p className="text-slate-600 text-xs mb-1">Fecha:</p>
+                    <p className="text-lg font-bold text-slate-800">
                       {format(new Date(lastReservation.date), "PPPP", { locale: es })}
                     </p>
                   </div>
                   
-                  <div className="bg-white p-4 rounded-xl shadow-sm">
-                    <p className="text-slate-600 text-sm mb-1">Horario:</p>
-                    <p className="text-2xl font-bold text-emerald-600">
+                  <div className="bg-white p-3 rounded-lg shadow-sm">
+                    <p className="text-slate-600 text-xs mb-1">Horario:</p>
+                    <p className="text-xl font-bold text-emerald-600">
                       {lastReservation.time}
                     </p>
                   </div>
@@ -153,25 +153,22 @@ export function ProfessionalCalendar() {
               )}
             </div>
 
-            <div className="bg-blue-50 p-6 rounded-xl border border-blue-200">
-              <h4 className="font-semibold text-blue-800 mb-2">Información Importante:</h4>
-              <ul className="text-blue-700 text-sm space-y-1 text-left max-w-md mx-auto">
-                <li>• Recibirás un email de confirmación en breve</li>
-                <li>• Te contactaremos 24 horas antes de la cita</li>
-                <li>• Si necesitas cancelar, hazlo con 48 horas de anticipación</li>
-                <li>• Llega 15 minutos antes de tu cita</li>
+            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <h4 className="font-semibold text-blue-800 mb-2 text-sm">Información Importante:</h4>
+              <ul className="text-blue-700 text-xs space-y-1 text-left">
+                <li>• Recibirás confirmación por email</li>
+                <li>• Te contactaremos 24h antes</li>
+                <li>• Llega 15 min antes de la cita</li>
               </ul>
             </div>
 
-            <div className="flex space-x-4 justify-center">
-              <Button 
-                onClick={closeSuccessModal}
-                className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 px-8 py-3 text-lg"
-              >
-                <CheckCircle2 className="w-5 h-5 mr-2" />
-                Perfecto, Entendido
-              </Button>
-            </div>
+            <Button 
+              onClick={closeSuccessModal}
+              className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 w-full"
+            >
+              <CheckCircle2 className="w-4 h-4 mr-2" />
+              Entendido
+            </Button>
           </div>
         </DialogContent>
       </Dialog>
