@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Calendar } from "@/components/ui/calendar";
-import { Button } from "@/components/ui/button";
+import { Calendar } from "./ui/calendar";
+import { Button } from "./ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from "./ui/dialog";
 import {
   Calendar as CalendarIcon,
   Clock,
@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-import { cn } from "@/lib/utils";
+import { cn } from "../lib/utils";
 
 const timeSlots = [
   "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
@@ -46,7 +46,7 @@ export function ProfessionalCalendar() {
     const dayOfWeek = date.getDay();
     
     // Check if it's weekend (Saturday = 6, Sunday = 0)
-    if (dayOfWeek === 0 || dayOfWeek === 6) {
+    if (dayOfWeek === 0 || dayOfWeek === 6 || dayOfWeek === 5) {
       setIsWeekend(true);
       setIsModalOpen(true);
     } else {
@@ -304,8 +304,8 @@ export function ProfessionalCalendar() {
                   <AlertCircle className="w-12 h-12 text-amber-500 mx-auto mb-3" />
                   <h3 className="font-semibold text-amber-800 mb-2">No hay horarios disponibles</h3>
                   <p className="text-amber-700 text-sm">
-                    Los fines de semana no hay consultas disponibles. 
-                    Por favor selecciona un día de lunes a viernes.
+                    Los jueves y fines de semana no hay consultas disponibles. 
+                    Por favor selecciona un día de lunes a jueves.
                   </p>
                 </div>
                 <Button onClick={closeModal} variant="outline" className="w-full">

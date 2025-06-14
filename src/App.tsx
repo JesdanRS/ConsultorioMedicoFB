@@ -13,7 +13,6 @@ import {
   Clock,
   CheckCircle2,
 } from "lucide-react";
-import { AppointmentScheduler } from "./components/AppointmentScheduler";
 import { ProfessionalCalendar } from "./components/ProfessionalCalendar";
 
 function App() {
@@ -33,7 +32,7 @@ function App() {
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-slate-800">
-                  Dr. Fabian Said Aranibar Bernal
+                Clinica Bernal
                 </h1>
                 <p className="text-sm text-emerald-600 font-medium">
                   Neurocirujano Especialista
@@ -58,12 +57,6 @@ function App() {
                 className="text-slate-700 hover:text-emerald-600 font-medium transition-colors duration-200"
               >
                 Servicios
-              </a>
-              <a
-                href="#agendar"
-                className="text-slate-700 hover:text-emerald-600 font-medium transition-colors duration-200"
-              >
-                Agendar Cita
               </a>
               <a
                 href="#calendario"
@@ -385,24 +378,6 @@ function App() {
         </div>
       </section>
 
-      {/* Appointment Scheduling Section */}
-      <section id="agendar" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h3 className="text-4xl font-bold text-slate-800 mb-4">
-              Agendar Consulta
-            </h3>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Programa tu cita de manera fácil y rápida. Selecciona la fecha, hora y tipo de consulta que mejor se adapte a tus necesidades.
-            </p>
-          </div>
-
-          <div className="max-w-5xl mx-auto">
-            <AppointmentScheduler />
-          </div>
-        </div>
-      </section>
-
       {/* Professional Calendar Section */}
       <section id="calendario" className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -473,7 +448,7 @@ function App() {
                   </h4>
                   <div className="space-y-1 text-slate-600">
                     <p>Lunes - Jueves: 9:00 - 15:00</p>
-                    <p>Sábados: 10:00 - 14:00</p>
+                    <p>Sábados: 9:00 - 15:00</p>
                     <p>Emergencias: 24/7</p>
                   </div>
                 </div>
