@@ -13,6 +13,7 @@ import {
   CheckCircle2,
   X,
   AlertCircle,
+  Star,
 } from "lucide-react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
@@ -23,18 +24,20 @@ const timeSlots = [
   "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00"
 ];
 
-interface ReservedDate {
+interface ReservedAppointment {
   date: string;
   time: string;
+  id: string;
 }
 
 export function ProfessionalCalendar() {
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTime, setSelectedTime] = useState<string>("");
-  const [reservedDates, setReservedDates] = useState<ReservedDate[]>([]);
+  const [reservedAppointments, setReservedAppointments] = useState<ReservedAppointment[]>([]);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [isWeekend, setIsWeekend] = useState(false);
+  const [lastReservation, setLastReservation] = useState<ReservedAppointment | null>(null);
 
   const handleDateSelect = (date: Date | undefined) => {
     if (!date) return;
@@ -59,20 +62,23 @@ export function ProfessionalCalendar() {
   const handleReservation = () => {
     if (selectedDate && selectedTime) {
       const dateString = format(selectedDate, "yyyy-MM-dd");
-      const newReservation: ReservedDate = {
+      const newReservation: ReservedAppointment = {
         date: dateString,
-        time: selectedTime
+        time: selectedTime,
+        id: `${dateString}-${selectedTime}-${Date.now()}`
       };
       
-      setReservedDates(prev => [...prev, newReservation]);
+      setReservedAppointments(prev => [...prev, newReservation]);
+      setLastReservation(newReservation);
       setIsModalOpen(false);
       setShowSuccessMessage(true);
       setSelectedTime("");
       
-      // Hide success message after 3 seconds
+      // Hide success message after 4 seconds
       setTimeout(() => {
         setShowSuccessMessage(false);
-      }, 3000);
+        setLastReservation(null);
+      }, 4000);
     }
   };
 
@@ -82,31 +88,93 @@ export function ProfessionalCalendar() {
     setSelectedDate(undefined);
   };
 
-  const isDateReserved = (date: Date) => {
-    const dateString = format(date, "yyyy-MM-dd");
-    return reservedDates.some(reserved => reserved.date === dateString);
+  const closeSuccessModal = () => {
+    setShowSuccessMessage(false);
+    setLastReservation(null);
   };
 
-  const getReservedTime = (date: Date) => {
+  const isTimeReserved = (date: Date, time: string) => {
     const dateString = format(date, "yyyy-MM-dd");
-    const reservation = reservedDates.find(reserved => reserved.date === dateString);
-    return reservation?.time;
+    return reservedAppointments.some(appointment => 
+      appointment.date === dateString && appointment.time === time
+    );
+  };
+
+  const getReservedTimesForDate = (date: Date) => {
+    const dateString = format(date, "yyyy-MM-dd");
+    return reservedAppointments
+      .filter(appointment => appointment.date === dateString)
+      .map(appointment => appointment.time);
+  };
+
+  const hasReservationsOnDate = (date: Date) => {
+    const dateString = format(date, "yyyy-MM-dd");
+    return reservedAppointments.some(appointment => appointment.date === dateString);
   };
 
   return (
     <div className="max-w-4xl mx-auto">
-      {/* Success Message */}
-      {showSuccessMessage && (
-        <div className="fixed top-4 right-4 z-50 bg-emerald-500 text-white p-4 rounded-xl shadow-lg flex items-center space-x-3 animate-in slide-in-from-top-2">
-          <CheckCircle2 className="w-6 h-6" />
-          <div>
-            <p className="font-semibold">¡Reserva Confirmada!</p>
-            <p className="text-sm opacity-90">
-              {selectedDate && format(selectedDate, "PPPP", { locale: es })} a las {selectedTime}
-            </p>
+      {/* Large Success Modal */}
+      <Dialog open={showSuccessMessage} onOpenChange={setShowSuccessMessage}>
+        <DialogContent className="sm:max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="flex items-center justify-center space-x-3 text-2xl">
+              <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 p-3 rounded-full">
+                <CheckCircle2 className="w-8 h-8 text-white" />
+              </div>
+              <span className="text-emerald-600">¡Cita Reservada Exitosamente!</span>
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="py-8 text-center space-y-6">
+            <div className="bg-gradient-to-br from-emerald-50 to-cyan-50 p-8 rounded-2xl border-2 border-emerald-200">
+              <div className="flex items-center justify-center mb-4">
+                <Star className="w-6 h-6 text-emerald-500 mr-2" />
+                <h3 className="text-xl font-bold text-slate-800">Detalles de tu Reserva</h3>
+                <Star className="w-6 h-6 text-emerald-500 ml-2" />
+              </div>
+              
+              {lastReservation && (
+                <div className="space-y-4">
+                  <div className="bg-white p-4 rounded-xl shadow-sm">
+                    <p className="text-slate-600 text-sm mb-1">Fecha de la Consulta:</p>
+                    <p className="text-xl font-bold text-slate-800">
+                      {format(new Date(lastReservation.date), "PPPP", { locale: es })}
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white p-4 rounded-xl shadow-sm">
+                    <p className="text-slate-600 text-sm mb-1">Horario:</p>
+                    <p className="text-2xl font-bold text-emerald-600">
+                      {lastReservation.time}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="bg-blue-50 p-6 rounded-xl border border-blue-200">
+              <h4 className="font-semibold text-blue-800 mb-2">Información Importante:</h4>
+              <ul className="text-blue-700 text-sm space-y-1 text-left max-w-md mx-auto">
+                <li>• Recibirás un email de confirmación en breve</li>
+                <li>• Te contactaremos 24 horas antes de la cita</li>
+                <li>• Si necesitas cancelar, hazlo con 48 horas de anticipación</li>
+                <li>• Llega 15 minutos antes de tu cita</li>
+              </ul>
+            </div>
+
+            <div className="flex space-x-4 justify-center">
+              <Button 
+                onClick={closeSuccessModal}
+                className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 px-8 py-3 text-lg"
+              >
+                <CheckCircle2 className="w-5 h-5 mr-2" />
+                Perfecto, Entendido
+              </Button>
+            </div>
           </div>
-        </div>
-      )}
+        </DialogContent>
+      </Dialog>
 
       <div className="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
         {/* Header */}
@@ -135,13 +203,14 @@ export function ProfessionalCalendar() {
                   disabled={(date) => date < new Date()}
                   className="rounded-md"
                   modifiers={{
-                    reserved: (date) => isDateReserved(date)
+                    hasReservations: (date) => hasReservationsOnDate(date)
                   }}
                   modifiersStyles={{
-                    reserved: {
-                      backgroundColor: '#ef4444',
-                      color: 'white',
-                      fontWeight: 'bold'
+                    hasReservations: {
+                      backgroundColor: '#fef3c7',
+                      color: '#92400e',
+                      fontWeight: 'bold',
+                      border: '2px solid #f59e0b'
                     }
                   }}
                 />
@@ -156,8 +225,8 @@ export function ProfessionalCalendar() {
                     <span className="text-slate-600">Fecha disponible</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <div className="w-4 h-4 bg-red-500 rounded"></div>
-                    <span className="text-slate-600">Fecha reservada</span>
+                    <div className="w-4 h-4 bg-amber-300 rounded border-2 border-amber-500"></div>
+                    <span className="text-slate-600">Fecha con citas reservadas</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <div className="w-4 h-4 bg-slate-300 rounded"></div>
@@ -171,7 +240,7 @@ export function ProfessionalCalendar() {
             <div className="space-y-4">
               <h4 className="text-xl font-bold text-slate-800">Citas Reservadas</h4>
               
-              {reservedDates.length === 0 ? (
+              {reservedAppointments.length === 0 ? (
                 <div className="bg-slate-50 p-6 rounded-xl text-center">
                   <CalendarIcon className="w-12 h-12 text-slate-400 mx-auto mb-3" />
                   <p className="text-slate-600">No tienes citas reservadas</p>
@@ -179,8 +248,10 @@ export function ProfessionalCalendar() {
                 </div>
               ) : (
                 <div className="space-y-3 max-h-96 overflow-y-auto">
-                  {reservedDates.map((reservation, index) => (
-                    <div key={index} className="bg-gradient-to-r from-emerald-50 to-cyan-50 p-4 rounded-xl border border-emerald-200">
+                  {reservedAppointments
+                    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime() || a.time.localeCompare(b.time))
+                    .map((appointment) => (
+                    <div key={appointment.id} className="bg-gradient-to-r from-emerald-50 to-cyan-50 p-4 rounded-xl border border-emerald-200">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-3">
                           <div className="bg-emerald-500 p-2 rounded-lg">
@@ -188,9 +259,9 @@ export function ProfessionalCalendar() {
                           </div>
                           <div>
                             <p className="font-semibold text-slate-800">
-                              {format(new Date(reservation.date), "PPPP", { locale: es })}
+                              {format(new Date(appointment.date), "PPPP", { locale: es })}
                             </p>
-                            <p className="text-emerald-600 font-medium">{reservation.time}</p>
+                            <p className="text-emerald-600 font-medium text-lg">{appointment.time}</p>
                           </div>
                         </div>
                         <CheckCircle2 className="w-5 h-5 text-emerald-500" />
@@ -251,23 +322,41 @@ export function ProfessionalCalendar() {
                   Horarios disponibles de 9:00 AM a 3:00 PM
                 </p>
                 
+                {selectedDate && getReservedTimesForDate(selectedDate).length > 0 && (
+                  <div className="bg-amber-50 p-3 rounded-lg border border-amber-200">
+                    <p className="text-sm text-amber-800 font-medium mb-1">Horarios ya reservados:</p>
+                    <p className="text-sm text-amber-700">
+                      {getReservedTimesForDate(selectedDate).join(", ")}
+                    </p>
+                  </div>
+                )}
+                
                 <div className="grid grid-cols-3 gap-2 max-h-64 overflow-y-auto">
-                  {timeSlots.map((time) => (
-                    <Button
-                      key={time}
-                      variant={selectedTime === time ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => handleTimeSelect(time)}
-                      className={cn(
-                        "transition-all duration-200",
-                        selectedTime === time 
-                          ? "bg-emerald-500 hover:bg-emerald-600 text-white" 
-                          : "hover:bg-emerald-50 hover:border-emerald-300"
-                      )}
-                    >
-                      {time}
-                    </Button>
-                  ))}
+                  {timeSlots.map((time) => {
+                    const isReserved = selectedDate && isTimeReserved(selectedDate, time);
+                    const isSelected = selectedTime === time;
+                    
+                    return (
+                      <Button
+                        key={time}
+                        variant={isSelected ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => !isReserved && handleTimeSelect(time)}
+                        disabled={isReserved}
+                        className={cn(
+                          "transition-all duration-200",
+                          isReserved 
+                            ? "bg-red-500 text-white cursor-not-allowed opacity-75 hover:bg-red-500" 
+                            : isSelected 
+                              ? "bg-emerald-500 hover:bg-emerald-600 text-white" 
+                              : "hover:bg-emerald-50 hover:border-emerald-300"
+                        )}
+                      >
+                        {time}
+                        {isReserved && <X className="w-3 h-3 ml-1" />}
+                      </Button>
+                    );
+                  })}
                 </div>
 
                 <div className="flex space-x-2 pt-4">
