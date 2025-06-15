@@ -12,6 +12,9 @@ import {
   Zap,
   Clock,
   CheckCircle2,
+  Building2,
+  Shield,
+  Users,
 } from "lucide-react";
 import { ProfessionalCalendar } from "./components/ProfessionalCalendar";
 
@@ -74,6 +77,110 @@ function App() {
           </div>
         </div>
       </header>
+
+      {/* Clinic Hero Section */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/95 to-cyan-600/95"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Content */}
+            <div className="text-white space-y-8">
+              <div className="space-y-6">
+                <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
+                  <Building2 className="w-4 h-4 mr-2" />
+                  Instalaciones de Vanguardia
+                </div>
+                
+                <h2 className="text-4xl lg:text-6xl font-bold leading-tight">
+                  Clínica Bernal
+                  <span className="block text-cyan-200">
+                    Excelencia Médica
+                  </span>
+                </h2>
+                
+                <p className="text-xl text-emerald-100 leading-relaxed">
+                  Nuestras modernas instalaciones están equipadas con la más alta tecnología 
+                  médica para brindar atención neurológica de clase mundial en un ambiente 
+                  cómodo y profesional.
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-3 gap-6">
+                <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
+                  <Shield className="w-8 h-8 text-cyan-200 mb-3" />
+                  <h3 className="font-semibold mb-2">Seguridad Total</h3>
+                  <p className="text-sm text-emerald-100">Protocolos médicos internacionales</p>
+                </div>
+                
+                <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
+                  <Zap className="w-8 h-8 text-cyan-200 mb-3" />
+                  <h3 className="font-semibold mb-2">Tecnología Avanzada</h3>
+                  <p className="text-sm text-emerald-100">Equipos de última generación</p>
+                </div>
+                
+                <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
+                  <Users className="w-8 h-8 text-cyan-200 mb-3" />
+                  <h3 className="font-semibold mb-2">Atención Personalizada</h3>
+                  <p className="text-sm text-emerald-100">Cuidado integral del paciente</p>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button
+                  onClick={() => (window.location.href = "#calendario")}
+                  className="bg-white text-emerald-600 px-8 py-4 rounded-xl font-semibold hover:bg-emerald-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center"
+                >
+                  <Calendar className="w-5 h-5 mr-2" />
+                  Agendar Visita
+                </button>
+                <button
+                  onClick={() => (window.location.href = "#servicios")}
+                  className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-emerald-600 transition-all duration-300 flex items-center justify-center"
+                >
+                  <Building2 className="w-5 h-5 mr-2" />
+                  Ver Servicios
+                </button>
+              </div>
+            </div>
+
+            {/* Clinic Image */}
+            <div className="relative">
+              <div className="relative overflow-hidden rounded-3xl shadow-2xl border-4 border-white/20 backdrop-blur-sm">
+                <img
+                  src="/image copy.png"
+                  alt="Clínica Bernal - Instalaciones Modernas"
+                  className="w-full h-[600px] object-cover transition-transform duration-700 hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                
+                {/* Floating Info Cards */}
+                <div className="absolute top-6 right-6 bg-white/95 backdrop-blur-sm p-4 rounded-xl shadow-lg">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
+                    <span className="text-sm font-medium text-slate-800">Abierto Ahora</span>
+                  </div>
+                </div>
+                
+                <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm p-4 rounded-xl shadow-lg">
+                  <div className="flex items-center space-x-3">
+                    <div className="bg-emerald-500 p-2 rounded-lg">
+                      <Stethoscope className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-slate-800">Consultas Disponibles</p>
+                      <p className="text-sm text-slate-600">Lun - Jue: 9:00 - 15:00</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Decorative Elements */}
+              <div className="absolute -top-4 -left-4 w-24 h-24 bg-cyan-400/20 rounded-full blur-xl"></div>
+              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-emerald-400/20 rounded-full blur-xl"></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Hero Section - Carta de Presentación */}
       <section id="inicio" className="py-20 px-4 sm:px-6 lg:px-8">
